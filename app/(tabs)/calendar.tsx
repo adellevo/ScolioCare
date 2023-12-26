@@ -1,21 +1,47 @@
 import React, { useState } from "react";
-import { Agenda, AgendaSchedule, AgendaEntry } from "react-native-calendars";
-import { Text } from "@ui-kitten/components";
-import { StyleSheet, Dimensions } from "react-native";
+import { Text, Calendar, Layout, Divider } from "@ui-kitten/components";
+import { StyleSheet } from "react-native";
 import { View } from "../../components/Themed";
-import { JOURNAL_ENTRY_HEIGHT, JOURNAL_ENTRY_WIDTH } from "../../constants/Dimensions";
+import { JOURNAL_ENTRY_HEIGHT, JOURNAL_ENTRY_WIDTH } from "../../constants";
+import BraceLog from "../../components/CalendarScreen/BraceLog/BraceLog";
+import { format } from "date-fns";
+import { ScrollView } from "react-native-gesture-handler";
+import { Agenda, AgendaSchedule } from "react-native-calendars";
+import CalendarSection from "../../components/CalendarScreen/CalendarSection";
+import PainTracker from "../../components/CalendarScreen/PainTracker";
 
 export default function CalendarScreen() {
   const [currentDay, setCurrentDay] = useState("");
+  const entries = [
+    { startTime: "2016-01-04 18:34", endTime: "2016-01-04 20:52" },
+    { startTime: "2016-01-04 09:10", endTime: "2016-01-04 15:52" },
+    { startTime: "2016-01-04 01:34", endTime: "2016-01-04 07:52" },
+  ];
+  const painPoints = [
+    "head and neck",
+    "shoulder",
+    "upper back",
+    "lower back",
+    "hip",
+    "sciatic nerve",
+  ];
+  const documents = [];
 
   const renderCurrentDayEntry = () => {
     return (
-      <View style={styles.journalEntry}>
-        <Text category="h6">{currentDay}</Text>
-        <Text>12 hours braced</Text>
-        <Text>Symptoms: neck pain, back soreness</Text>
-        <Text>Documents</Text>
-        <Text>Add editing button</Text>
+      <View>
+        <Divider style={{ height: 15, backgroundColor: "#2C2D2E", marginBottom: 30 }} />
+        <Text category="h5" style={{ fontWeight: "500", textAlign: "center" }}>
+          {currentDay}
+        </Text>
+        <ScrollView style={styles.journalEntry}>
+          <CalendarSection title="Brace Log" children={<BraceLog data={entries} />} />
+          <CalendarSection
+            title="Pain Points"
+            children={<PainTracker data={painPoints} />}
+          />
+          <CalendarSection title="Documents" />
+        </ScrollView>
       </View>
     );
   };
@@ -23,6 +49,11 @@ export default function CalendarScreen() {
   const currentDayEntry: AgendaSchedule = {
     [currentDay]: [],
   };
+
+  // const testItems: AgendaSchedule = {
+  //   "2023-12-25": [{ name: "item 1 - any js object", height: 80, day: "2012-05-22" }],
+  //   "2012-05-23": [],
+  // };
 
   return (
     <Agenda
@@ -53,9 +84,7 @@ const styles = StyleSheet.create({
     padding: 30,
     width: JOURNAL_ENTRY_WIDTH,
     height: JOURNAL_ENTRY_HEIGHT,
-    borderRadius: 2,
-    borderColor: "black",
-    backgroundColor: "grey",
-    color: "black",
+    // borderTopColor: "grey",
+    backgroundColor: "white",
   },
 });

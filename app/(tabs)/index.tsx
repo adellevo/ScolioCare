@@ -1,7 +1,7 @@
 import { FlatList } from "react-native";
 import { Card } from "../../components/Card";
 import { Screen } from "../../components/Screen";
-import { LIST_MARGIN } from "../../constants/Dimensions";
+import { LIST_MARGIN } from "../../constants";
 
 export default function SearchScreen() {
   const properties = [
