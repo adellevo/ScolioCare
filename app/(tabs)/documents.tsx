@@ -47,7 +47,7 @@ export default function DocumentScreen() {
         renderItem={({ item }: { item: any }) => (
           <>
             <View style={styles.row}>
-              <Image source={{ uri: item.pages[0] }} style={styles.image} />
+              {/* <Image source={{ uri: item.pages[0] }} style={styles.image} />
               <View>
                 <Text category="s1" style={[styles.textMargin, { marginBottom: 3 }]}>
                   {item.title}
@@ -58,7 +58,7 @@ export default function DocumentScreen() {
                 >
                   {item.date}, {item.time} - {item.pages.length} pages
                 </Text>
-              </View>
+              </View> */}
             </View>
             <Divider />
           </>

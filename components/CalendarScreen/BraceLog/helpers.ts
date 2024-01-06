@@ -1,8 +1,8 @@
 import { format } from "date-fns";
 
 export const getSessionLabel = (session: { startTime: string; endTime: string }) => {
-  const startTime = format(session.startTime, "H:mm");
-  const endTime = format(session.endTime, "H:mm");
+  const startTime = format(session.startTime, "H:mm a");
+  const endTime = format(session.endTime, "H:mm a");
 
   return `${startTime} - ${endTime}`;
 };

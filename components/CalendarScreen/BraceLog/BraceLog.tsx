@@ -1,40 +1,47 @@
-import React from "react";
+import React, { useState } from "react";
 import { View, ScrollView } from "react-native";
 import { Divider, Text } from "@ui-kitten/components";
 import { StyleSheet } from "react-native";
 import { getSessionLabel, getSessionDuration } from "./helpers";
+import { Button } from "react-native";
+import DateTimePicker from "@react-native-community/datetimepicker";
 
 export default function BraceLog(props: {
   data: { startTime: string; endTime: string }[];
 }) {
+  const [mydate, setDate] = useState(new Date());
+  const [displaymode, setMode] = useState("date");
+
   return (
-    <View style={[styles.tableContent]}>
-      <View style={styles.tableHeader}>
-        <Text category="label" style={{ marginLeft: 15 }}>
-          Sessions
-        </Text>
-        <Text category="label" style={{ marginRight: 15 }}>
-          Total:{" "}
-          {getSessionDuration(
-            props.data[props.data.length - 1].endTime,
-            props.data[0].startTime
-          )}
-        </Text>
-      </View>
-      {props.data.map((session, index) => (
-        <View key={index}>
-          <Divider />
-          <View style={styles.session}>
-            <Text category="p2" style={{ marginLeft: 15 }}>
-              {getSessionLabel(session)}
-            </Text>
-            <Text category="p2" style={{ marginRight: 15 }}>
-              {getSessionDuration(session.startTime, session.endTime)}
-            </Text>
-          </View>
+    <>
+      <View style={[styles.tableContent]}>
+        <View style={styles.tableHeader}>
+          <Text category="label" style={{ marginLeft: 15 }}>
+            Sessions
+          </Text>
+          <Text category="label" style={{ marginRight: 15 }}>
+            Total:{" "}
+            {getSessionDuration(
+              props.data[props.data.length - 1].endTime,
+              props.data[0].startTime
+            )}
+          </Text>
         </View>
-      ))}
-    </View>
+        {props.data.map((session, index) => (
+          <View key={index}>
+            <Divider />
+            <View style={styles.session}>
+              <Text category="p2" style={{ marginLeft: 15 }}>
+                {getSessionLabel(session)}
+              </Text>
+              <Text category="p2" style={{ marginRight: 15 }}>
+                {getSessionDuration(session.startTime, session.endTime)}
+              </Text>
+            </View>
+          </View>
+        ))}
+      </View>
+    </>
   );
 }
 

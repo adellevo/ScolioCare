@@ -60,12 +60,12 @@ export default function SearchScreen() {
 
   return (
     <Screen style={{ marginHorizontal: LIST_MARGIN }}>
-      <FlatList
+      {/* <FlatList
         data={properties}
         keyExtractor={(item) => item.id.toString()}
         showsVerticalScrollIndicator={false}
         renderItem={({ item }) => <Card property={item} style={{ marginVertical: 5 }} />}
-      ></FlatList>
+      ></FlatList> */}
     </Screen>
   );
 }

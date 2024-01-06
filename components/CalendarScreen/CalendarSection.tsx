@@ -8,7 +8,7 @@ export default function CalendarSection(props: { title: string; children?: any }
   return (
     <View style={styles.container}>
       <View style={styles.titleBar}>
-        <Text category="s1" style={{ fontWeight: 500 }}>
+        <Text category="h6" style={{ fontWeight: 500 }}>
           {props.title}
         </Text>
         <MaterialCommunityIcons name="square-edit-outline" style={styles.icon} />
@@ -20,15 +20,14 @@ export default function CalendarSection(props: { title: string; children?: any }
 
 const styles = StyleSheet.create({
   container: {
-    marginBottom: 30,
+    marginBottom: 40,
   },
-
   titleBar: {
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-between",
     padding: 2,
-    marginBottom: 8,
+    marginBottom: 10,
   },
   icon: { fontSize: 20, color: "black", marginLeft: 5 },
 });
